@@ -206,3 +206,20 @@ gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 hist = cv2.calcHist([gray_img], [0], None, [256], [0, 256])
 plt.plot(hist)
 ```
+
+## ヒストグラムの均一化
+
+`cv2.equalizeHist(img)`で，ヒストグラムの均一化を行う．  
+ヒストグラムの均一化とは，一言でいうと明暗をよりはっきりにするための処理．
+
+```py
+import cv2
+
+img = cv2.imread('image.jpg', 0)
+img_eq = cv2.equalizeHist(img)
+
+cv2.imshow('original_img', img)
+cv2.imshow('equalized_img', img_eq)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
