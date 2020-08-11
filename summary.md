@@ -267,3 +267,23 @@ cv2.createTrackbar('track_bar', 'window_name', trackValue, 255, on_track_bar)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
+
+## マウスイベント
+
+下記のようにすることで，マウスイベントを感知させることができる．
+
+```py
+import cv2
+import numpy as np
+
+def print_position(event, x, y, flags, params):
+    if event == cv2.EVENT_LBUTTONDBCLK:
+        print(x, y)
+
+img = np.zeros((512, 512), dtype=np.uint8)
+cv2.namedWindow('window_name')
+cv2.setMouseCallback('window_name', print_position)
+cv2.imshow('window_name', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
