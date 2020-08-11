@@ -287,3 +287,31 @@ cv2.imshow('window_name', img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
+
+## 図形の描画
+
+### 線の描画
+
+`cv2.line(img, point1, point2, color, thickness)`
+
+### 四角形の描画
+
+`cv2.rectangle(img, point1, point2, color, thickness)`
+
+`thickness`に`-1`などのネガティブな番号を入れると，図形を塗りつぶしてくれる．
+
+### 円の描画
+
+`cv2.circle(img, center, radius, color, thickness)`
+
+### 楕円の描画
+
+`cv2.ellipse(img, center, axes, angle, startAngle, endAngle, color, thickness)`
+
+### 多角形の描画
+
+`cv2.polylines(img, [points], isClosed, color, thickness)`
+
+### 文字の描画
+
+`cv2.putText(img, text, position, fontFace, fontScale, color, thickness, lineType)`
