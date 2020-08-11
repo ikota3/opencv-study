@@ -223,3 +223,29 @@ cv2.imshow('equalized_img', img_eq)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
+
+## γ 変換
+
+γ(ガンマ)変換とは画像の明るさの変更方法を示す．
+γ が 1 より小さいときは，暗くなる．
+γ が 1 より大きいときは，明るくなる．
+
+γ 変換の計算式は以下．  
+`y = (x/255) ^ (1/γ)`
+
+```py
+import cv2
+import numpy as np
+
+gamma = 1.5
+lookup_table = np.zeros((256, 1), dtype=np.uint8)
+for i in range(256):
+    lookup_table[i][0] = 255 * (float(i)/255) ** (1.0/gamma)
+
+img = cv2.imread('image.jpg')
+img_gamma = cv2.LUT(img, lookup_table)
+cv2.imshow('img', img)
+cv2.imshow('img_gamma', img_gamma)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
