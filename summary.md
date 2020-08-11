@@ -249,3 +249,21 @@ cv2.imshow('img_gamma', img_gamma)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
+
+## トラックバーの作成
+
+下記のようにすることで，ウィンドウにトラックバーを作成できる．
+
+```py
+import cv2
+
+def on_track_bar(position):
+    global trackValue
+    trackValue = position
+
+trackValue = 100
+cv2.namedWindow('window_name')
+cv2.createTrackbar('track_bar', 'window_name', trackValue, 255, on_track_bar)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
