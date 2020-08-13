@@ -315,3 +315,37 @@ cv2.destroyAllWindows()
 ### 文字の描画
 
 `cv2.putText(img, text, position, fontFace, fontScale, color, thickness, lineType)`
+
+## 2 値化
+
+2 値化とは，画素の輝度があらかじめ決めた閾値より大きければ白，小さければ黒にするといったように，白黒画像に変換する処理．
+
+`cv2.threshold(img, thresh, maxval, type)`で２値化を行える．
+
+```py
+import cv2
+
+# グレースケールで読み込む
+gray_img = cv2.imread('image.jpg', 0)
+thresh = 100
+ret, img_th = cv2.threshold(gray_img, thresh, 255, cv2.THRESH_BINARY)
+cv2.imshow('img_th', img_th)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+
+`cv2.threshold`では画像に対して，1 つの閾値を与えて二値化処理を行っていたが，撮影された状況によっては各領域がバラバラに明るかったり暗かったりしてしまい，いい結果が得られない．  
+そのようなときは，画像中のそれぞれの領域ごとに閾値を計算して，それに応じた二値化処理を行う，適応的閾値処理を使う．
+
+`cv2.adaptiveThreshold(img, maxval, adaptiveMethod, thresholdType, blockSize, C)`で行える．
+
+```py
+import cv2
+
+# グレースケールで読み込む
+gray_img = cv2.imread('image.jpg', 0)
+ret, img_th = cv2.adaptiveThreshold(gray_img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 3, 1)
+cv2.imshow('img_th', img_th)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
