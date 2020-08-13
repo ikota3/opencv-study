@@ -349,3 +349,25 @@ cv2.imshow('img_th', img_th)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
+
+## トラックバーを使って動的に 2 値化処理を行う
+
+```py
+import cv2
+
+def onTrackbar(position):
+    global threshold
+    threshold = position
+
+threshold = 100
+cv2.namedWindow('img_th')
+cv2.createTrackbar('track', 'img_th', threshold, 255, onTrackbar)
+
+img = cv2.imread('image.jpg', 0)
+while True:
+    img_th = cv2.threshold(img, threshold, 255, cv2.THRESH_BINARY)
+    cv2.imshow('img_th', img_th)
+    if cv2.waitKey(10) == 27:
+        break
+cv2.destroyAllWindows()
+```
