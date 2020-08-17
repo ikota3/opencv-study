@@ -371,3 +371,37 @@ while True:
         break
 cv2.destroyAllWindows()
 ```
+
+## アファイン変換
+
+アファイン変換とは，回転や平行移動などの線形変換のこと．
+
+下記は`dx`，`dy`で指定した分画像を移動させる．
+
+```py
+import cv2
+import numpy as np
+
+img = cv2.imread('image.jpg')
+h, w = img.shape[:2]
+dx, dy = 30, 30
+
+afn_mat = np.float32([
+    [1, 0, dx],
+    [0, 1, dy],
+])
+img_afn = cv2.wrapAffine(img, afn_mat, (w, h))
+cv2.imshow('trans_img', img_afn)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
+
+画像を回転させることもできる．
+
+```py
+rot_mat = cv2.getRotationMatrix2D((w/2, h/2), 40, 1)
+img_afn = cv2.wrapAffine(img, rot_mat, (w,h))
+cv2.imshow('rotation_img', img_afn)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
