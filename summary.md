@@ -435,3 +435,25 @@ cv2.imshow('img_psp', img_psp)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
+
+## 畳み込み
+
+畳み込みとは，周囲の情報を使って自分の画素地を更新する処理のこと．
+
+- 流れ
+  1. フィルターを用意．
+  2. 着目画素の周囲を使い，それぞれの画素値ごとに(画素値)x(フィルター)の計算を行い，それらを全て足し合わせ，その値を使って着目画素の値を更新する．
+  3. 全ての画素について上記の操作(畳み込み)を行う．
+
+```py
+import cv2
+import numpy as np
+
+kernel = np.ones((3,3)) / 9.0
+img = cv2.imread('image.jpg', 0)
+img_ke1 = cv2.filter2D(img, -1, kernel)
+cv2.imshow('img', img)
+cv2.imshow('img_ke1', img_ke1)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
