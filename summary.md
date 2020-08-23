@@ -457,3 +457,18 @@ cv2.imshow('img_ke1', img_ke1)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 ```
+
+## 平滑化
+
+平滑化とは，画像にブラーをかける手法のこと．
+
+```py
+import cv2
+
+img = cv2.imread('image.jpg')
+img_blur = cv2.blur(img, (3, 3))
+cv2.imshow('img', img)
+cv2.imshow('img_blur', img_blur)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+```
